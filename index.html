@@ -10,10 +10,18 @@
 
 
         <H1>Instructions</H1>
-        <p>How to play my game</p>
+        <p>Use the WASD keys to move the knight and then press the the space bar when you are near her to save her!<br> The amount of times you save her are in the top right corner</p>
 
         <h1>Comments</h1>
-        Discuss code goes here
+        <div id="disqus_thread"></div>
+        <script>
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'http://nau-cs413.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
 
         <script src="pixi.js"></script>
         <script src = "Min.js"></script>
