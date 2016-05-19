@@ -11,12 +11,48 @@ var sizex = 400;
 var movespeed = 12;
 //keeping track of the score in the game
 var score=1;
+//event listener for keystrokes and game functionality
+document.addEventListener('keydown',keydownEventHandler);
 
 var renderer=PIXI.autoDetectRenderer(sizey,sizex,{backgroundColor: 0x3344ee}); //create renderer for game
 gameport.appendChild(renderer.view);//adding renderer for gameport
 
 
+
+
 var stage= new PIXI.Container();//setting default container for graphics
+var timer=window.setTimeout(dil,5000);
+
+function dil(){
+        //creating alert to notify users they lost and thensetting all time calculations back to normal
+        alert('YOU LOST\nWould you like to play again? ');
+        score=0;
+        text.setText(0);
+        time=5000;
+        counter.setText(5000);
+        decrement=100;
+        timer =window.setTimeout(dil,5000);
+
+
+}
+//decrementing clock and setting text to it
+function clock (){
+    time-=100;
+    counter.setText(time);
+}
+
+
+//setting up time for clock
+var time = 5000;
+var decrement = 100;
+var counter = new PIXI.Text("5000");
+counter.anchor.x=.5;
+counter.anchor.y=.5;
+counter.position.x=310;
+counter.position.y=20;
+var texas=setInterval(clock,100);
+stage.addChild(counter);
+
 
 //creating the hero object and sending to the stage
 var texture = PIXI.Texture.fromImage("knight.png");
@@ -51,18 +87,20 @@ function getRandomInt(min,max) {
 }
 
 function animate(){
+    //animating the game
     requestAnimationFrame(animate);
     renderer.render(stage);
 }
 function keydownEventHandler(e){
-    if(e.keyCode==87){
+    if(e.keyCode==87){//w key
+        //making sure user doesn't go out of bounds
         if(hero.position.y-32>0 ){
-
                 hero.position.y-=movespeed;
 
         }
     }
-    if(e.keyCode==83){
+    if(e.keyCode==83){//s key
+        //making sure user doesn't go out of bounds
         if(hero.position.y+32<sizey){
 
                 hero.position.y+=movespeed;
@@ -72,6 +110,7 @@ function keydownEventHandler(e){
 
 
     if(e.keyCode==65){//a Key
+        //making sure user doesn't go out of bounds
         if(hero.position.x-32>0){
                 hero.position.x-=movespeed;
             }
@@ -80,16 +119,19 @@ function keydownEventHandler(e){
 
     }
     if(e.keyCode==68){//d key
+        //making sure user doesn't go out of bounds
         if(hero.position.x+32<sizex){
             hero.position.x+=movespeed;
         }
-        else{
-
-        }
-
     }
     if (e.keyCode==32){
+        //if the user is within 40 pixel of the princess they can save her
         if(Math.abs(hero.position.x-rat.position.x)<40){
+
+            //clearing timeout so game does not end
+            clearTimeout(timer);
+
+            //removing the princess and inserting another one
             stage.removeChild(rat);
             rat.anchor.x=.5;
             rat.anchor.y=.5;
@@ -97,19 +139,29 @@ function keydownEventHandler(e){
             rat.position.y=getRandomInt(50,350);
             stage.addChild(rat);
             //incrementing score.
+
             text.setText(score++);
 
+            //creating new timeout event and removing 100 milliseconds from the timeout clock
+            timer =window.setTimeout(dil,5000-decrement);
+
+            //clearing interval for accuracy
+            window.clearInterval(texas);
+
+            //keeping track of time for time clock
+            time=5000-decrement;
+
+            //creating new interval with updated time.
+            texas=window.setInterval(clock,100);
+
+            //setting new clock
+            counter.setText(time);
+
+            //increasing decrement
+            decrement+=100;
         }
-
-
-
-
     }
-
 }
-
-document.addEventListener('keydown',keydownEventHandler);
-
 animate();
 
 
