@@ -124,7 +124,7 @@ function keydownEventHandler(e){
             hero.position.x+=movespeed;
         }
     }
-    if (e.keyCode==32){
+    if (e.keyCode==69){
         //if the user is within 40 pixel of the princess they can save her
         if(Math.abs(hero.position.x-rat.position.x)<40){
 
