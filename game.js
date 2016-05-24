@@ -231,8 +231,14 @@ endWin.addChild(playAgain2);
 stage.addChild(endWin);
 
 //***********************************************setting up title screen***************************************/
+var gameTitle = new PIXI.Text("Princess Rescue");
+gameTitle.anchor.x=.5;
+gameTitle.anchor.y=.5;
+gameTitle.position.x=200;
+gameTitle.position.y=100;
+titlescreen.addChild(gameTitle);
 titlescreen.visible=1;
-var title = new PIXI.Text("Title Screen");
+var title = new PIXI.Text("Click Here to play");
 title.position.x=200;
 title.position.y=200;
 title.anchor.x=.5;
