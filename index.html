@@ -4,18 +4,30 @@
     <title>Project 1</title>
 </head>
 <body>
-<H1>Game</H1>
+<H1>Princess Rescue</H1>
 <div id = "gameport" ></div>
 
 
 
 <H1>Instructions</H1>
 <p>Use the WASD keys to move the knight and then press the the E key when you are near her to save her!<br> The amount of times you save her are in the top right corner the timer to the left of it is a countdown clock
-    <br> the time goes down by 100 milliseconds every time you save her. The high score is 33 Better Hurry! </p>
+    <br> the time goes down by 100 milliseconds every time you save her.<br> The score to win for easy is 10 with a starting time of ten seconds<br>The score to win for medium is 20 with a time of 7 seconds<br>The score for hard is 30 with 5 seconds inbetween </p>
 
 <h1>Comments</h1>
 <div id="disqus_thread"></div>
+<script>
+    (function() {
 
+        var d = document, s = d.createElement('script');
+
+        s.src = 'http://nau-cs413.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+
+        (d.head || d.body).appendChild(s);
+
+    })();
+</script>
 <script src="tweenjs.min.js"></script>
 <script src="pixi.js"></script>
 <script src ="pixi-audio.js"></script>
