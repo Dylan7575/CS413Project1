@@ -24,8 +24,8 @@
                  "type":"",
                  "visible":true,
                  "width":300,
-                 "x":4,
-                 "y":30
+                 "x":-4,
+                 "y":38
                 }],
          "opacity":1,
          "type":"objectgroup",
